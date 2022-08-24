@@ -17,10 +17,10 @@ class GameViewModel : ViewModel() {
     private fun resetList() {
         wordList = mutableListOf(
             "queen",
-            "hospital",
+            "Reyhan",
             "basketball",
             "cat",
-            "change",
+            "ganti",
             "snail",
             "soup",
             "calendar",

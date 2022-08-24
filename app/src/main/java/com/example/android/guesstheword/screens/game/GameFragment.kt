@@ -37,15 +37,14 @@ import com.example.android.guesstheword.databinding.GameFragmentBinding
  */
 class GameFragment : Fragment() {
 
-
     private lateinit var binding: GameFragmentBinding
 
     private lateinit var viewModel: GameViewModel
 
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
@@ -66,8 +65,10 @@ class GameFragment : Fragment() {
         return binding.root
 
     }
+
     private fun onEndGame() {
         gameFinished()
+        binding.endGameButton.setOnClickListener { onEndGame() }
     }
 
     /**
@@ -88,6 +89,7 @@ class GameFragment : Fragment() {
         updateWordText()
         updateScoreText()
     }
+
     private fun onCorrect() {
         viewModel.onCorrect()
         updateScoreText()
