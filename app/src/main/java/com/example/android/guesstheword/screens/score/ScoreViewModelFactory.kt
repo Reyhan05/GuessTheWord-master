@@ -11,5 +11,4 @@ class ScoreViewModelFactory(private val finalScore: Int) : ViewModelProvider.Fac
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-
 }
