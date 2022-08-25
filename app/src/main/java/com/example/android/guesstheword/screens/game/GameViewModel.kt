@@ -54,51 +54,54 @@ class GameViewModel : ViewModel() {
     }
 
     init {
-
         _word.value = ""
         _score.value = 0
+        Log.i("GameViewModel", "GameViewModel created!")
         resetList()
         nextWord()
-        Log.i("GameViewModel", "GameViewModel created!")
     }
 
     /**
-     * Moves to the next word in the list
+     * Callback called when the ViewModel is destroyed
      */
-    private fun nextWord() {
-        if (wordList.isEmpty()) {
-            //Select and remove a word from the list
-            onGameFinished()
-        } else {
-            // Untuk mengakhiri permain jika selesai
-            _word.value = wordList.removeAt(0)
-        }
-//		updateWordText()
-//		updateScoreText()
-    }
-    /** Methods for buttons presses **/
-    fun onSkip() {
-        _score.value = (score.value)?.minus(1)
-        nextWord()
-    }
-
-    fun onCorrect() {
-        _score.value = (score.value)?.plus(1)
-        nextWord()
-    }
-
-    // Method for the game completed event
-    fun onGameFinished() {
-        _eventGameFinish.value = true
-    }
-
-    // Method for the game completed event
-    fun onGameFinishComplete() {
-        _eventGameFinish.value = false
-    }
-
     override fun onCleared() {
         super.onCleared()
         Log.i("GameViewModel", "GameViewModel destroyed!")
     }
+
+    /** Methods for updating the UI **/
+    fun onSkip() {
+        _score.value = (_score.value)?.minus(1)
+        nextWord()
+    }
+    fun onCorrect() {
+        _score.value = (_score.value)?.plus(1)
+        nextWord()
+    }
+
+    /**
+     * Moves to the next _word in the list.
+     */
+    private fun nextWord() {
+        if (wordList.isEmpty()) {
+            onGameFinish()
+
+        } else {
+            //Select and remove a _word from the list
+            _word.value = wordList.removeAt(0)
+        }
+    }
+
+
+
+    /** Method for the game completed event **/
+
+    fun onGameFinish() {
+        _eventGameFinish.value = true
+    }
+
+    fun onGameFinishComplete() {
+        _eventGameFinish.value = false
+    }
+
 }
